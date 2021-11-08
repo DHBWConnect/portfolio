@@ -18,7 +18,6 @@ MarkupSafe
 MouseInfo
 packaging
 Pillow
-pipwin
 psycopg2
 PyAudio
 PyAutoGUI
@@ -29,7 +28,6 @@ PyMsgBox
 pyOpenSSL
 pyparsing
 pyperclip
-pypiwin32
 PyPrind
 PyRect
 PyScreeze
