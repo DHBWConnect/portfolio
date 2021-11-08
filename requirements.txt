@@ -19,7 +19,6 @@ MouseInfo
 packaging
 Pillow
 psycopg2
-PyAudio
 PyAutoGUI
 pycparser
 PyGetWindow
