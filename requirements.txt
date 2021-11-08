@@ -57,7 +57,6 @@ pyttsx3==2.90
 pytweening==1.0.4
 pytz-deprecation-shim==0.1.0.post0
 pywhatkit==5.1
-pywin32==302
 PyYAML==3.12
 requests==2.26.0
 rsa==4.7.2
