@@ -1,4 +1,3 @@
-aniso8601
 backports.zoneinfo
 beautifulsoup4
 certifi
