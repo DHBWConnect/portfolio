@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center centringMatch">
+    <form class="form-signin">
+        <div class="form-label-group">
+            <label for="gruppenname">Gruppenname</label>
+            <input type="text" id="gruppenname" class="form-control" placeholder="{{ gruppe }}" readonly>
+        </div>
+        <div class="form-label-group">
+            <label for="readInterests">Interesse</label>
+            <input type="text" id="readInterests" class="form-control" placeholder="{{ interesse }}" readonly>
+        </div>
+        <div class="form-label-group">
+            <label for="Einladungslink">Einladungslink</label>
+            <a href="{{ link }}"> <input type="text" id="Einladungslink" class="form-control" placeholder="{{ link }}" readonly></a>
+        </div>
+    </form>
+</div>
+<br>
+<section class="mb-4 text-center">
+    <a class="btn btn-primary btn-floating m-1 greenCheck" role="button" href="/like_group"><i class="fas fa-check-square fa-4x"></i></a>
+    <a class="btn btn-primary btn-floating m-1 redCross" role="button" href="/dislike_group"><i class="fas fa-times-circle fa-4x"></i></a>
+</section>
+{% endblock %}

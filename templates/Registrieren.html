@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DHBW-Connect/Registrieren</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="shortcut icon" href="/static/blitz5.png">
+</head>
+<body style="background-image: url('static/Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size:cover;">
+<div class="container d-flex flex-column justify-content-center align-items-center centringRegister">
+    <img src="static/blitz5.png" class="rounded" alt="blitz5">
+    <br>
+    <form class="form-signin">
+        <div class="form-row">
+            <div class="form-label-group col-md-6">
+                <label for="username">Benutzername</label>
+                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Benutzername" required autofocus>
+            </div>
+            <div class="form-label-group col-md-6">
+                <label for="inputEmail">Email-Addresse</label>
+                <input type="email" name="email" id="inputEmail" class="form-control input-lg" placeholder="Email-Addresse" required autofocus>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label-group col-md-6">
+                <label for="inputPassword">Passwort</label>
+                <input type="password" name="password" id="inputPassword" class="form-control input-lg" placeholder="Passwort" required>
+            </div>
+            <div class="form-label-group col-md-6">
+                 <label for="inputConfirmPassword">Passwort wiederholen</label>
+                 <input type="password" name="confirmPW" id="inputConfirmPassword" class="form-control input-lg" placeholder="Passwort wiederholen" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label-group col-md-6">
+                <label for="inputTel">Telefonnummer</label>
+                <input type="tel" name="number" id="inputTel" class="form-control input-lg" placeholder="Telefonnummer" required autofocus>
+            </div>
+            <div class="form-label-group col-md-6">
+                <label for="inputAge">Alter</label>
+                <input type="number" name="age" id="inputAge" class="form-control input-lg" placeholder="Alter" required autofocus>
+            </div>
+        </div>
+        <div class="form-label-group">
+            <label>Interesse</label>
+            <select class="browser-default custom-select" name="interesse">
+                <option disabled hidden selected>Wähle deine Interesse aus</option>
+                <option value="1">Freizeit</option>
+                <option value="2">Party</option>
+                <option value="3">Lernen</option>
+                <option value="4">Wohnen</option>
+                <option value="5">Fahrgemeinschaft</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="form-label-group col-md-6">
+                <label for="inputDHBW">DHBW</label>
+                <input type="text" name="dhbw" id="inputDHBW" class="form-control input-lg" placeholder="DHBW" required autofocus>
+            </div>
+            <div class="form-label-group col-md-6">
+                <label for="inputSgang">Studiengang</label>
+                <input type="text" name="studiengang" id="inputSgang" class="form-control input-lg" placeholder="Studiengang" required autofocus>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-danger btn-lg btn-block" role="button" formaction="/registrieren" formmethod="POST">Abschicken</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
+
+

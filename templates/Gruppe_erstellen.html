@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container d-flex flex-column justify-content-center align-items-center centringGroup">
+        <form class="form-signin">
+            <div class="form-label-group">
+                <label for="inputGroupname">Gruppenname</label>
+                <input type="text" name="groupname" id="inputGroupname" class="form-control input-lg" placeholder="Gruppenname" required autofocus>
+            </div>
+            <br>
+            <div class="form-label-group">
+                <label for="inputWhatsapp">WhatsApp-Einladungslink</label>
+                <input type="text" name="whatsappLink" id="inputWhatsapp" class="form-control input-lg" placeholder="WhatsApp-Einladungslink" required autofocus>
+            </div>
+            <br>
+            <label for="groupInterests">Gruppeninteresse</label>
+            <div class="form-group">
+                <select class="browser-default custom-select fontGroupInterests" id="groupInterests" name="interesse" required>
+                    <option disabled hidden selected>Wähle deine Interesse aus</option>
+                    <option value="1">Freizeit</option>
+                    <option value="2">Party</option>
+                    <option value="3">Lernen</option>
+                    <option value="4">Wohnen</option>
+                    <option value="5">Fahrgemeinschaft</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-label-group">
+                <label for="Grouppicture">Gruppenbild</label>
+                <input type="file" class="form-control input-lg" id="Grouppicture" accept="image/*">
+            </div>
+            <br>
+            <button class="btn btn-danger btn-lg btn-block" role="button" formaction="/gruppenerstellung" formmethod="POST">Gruppe erstellen</button>
+        </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+{% endblock %}

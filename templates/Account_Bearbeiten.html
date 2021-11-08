@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center centringProfile">
+    <form action="/usernameAendern" method="POST">
+        <div class="form-label-group">
+            <input type="text" name="new_username" id="username" class="form-control input-lg" placeholder="Benutzername" required autofocus>
+            <button class="btn btn-secondary" role="button">Username Ändern</button>
+        </div>
+    </form>
+    <form action="/EmailAendern" method="POST">
+        <br style="display: block; content: ; margin-top: 0;">
+        <div class="form-label-group">
+            <input type="email" name="new_email" id="inputEmail" class="form-control input-lg" placeholder="Email-Addresse" required autofocus>
+            <button class="btn btn-secondary" role="button">E-Mail Ändern</button>
+        </div>
+    </form>
+    <form action="/passwortAendern" method="POST">
+        <br style="display: block; content: ; margin-top: 0;">
+        <div class="form-label-group">
+            <input type="password" name="new_password" id="inputPassword" class="form-control input-lg" placeholder="Passwort" required autofocus>
+        </div>
+        <div class="form-label-group">
+            <input type="password" name="confirm_new_password" id="inputConfirmPassword" class="form-control input-lg" placeholder="Passwort bestätigen" required autofocus>
+            <button class=" btn btn-secondary" role="button">Passwort Ändern</button>
+        </div>
+        <br style="display: block; content: ; margin-top: 0;">
+    </form>
+</div>
+<script src=" https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center centringGroup">
+    <form class="form-signin">
+        <div class="form-label-group">
+            <label for="partnername">Terminpartner</label>
+            <input type="text" name="partnername" id="partnername" class="form-control input-lg" placeholder="Terminpartner" required autofocus>
+        </div>
+        <br>
+        <div class="form-label-group">
+            <label for="datumTermin">Datum</label>
+            <input type="text" name="datumTermin" id="datumTermin" class="form-control input-lg" placeholder="TT.MM.YYYY" required autofocus>
+        </div>
+        <br>
+        <div class="form-label-group">
+            <label for="uhrzeitTermin">uhrzeit</label>
+            <input type="text" name="uhrzeitTermin" id="uhrzeitTermin" class="form-control input-lg" placeholder="HH:MM" required autofocus>
+        </div>
+        <br>
+        <button class="btn btn-danger btn-lg btn-block" role="button" formaction="/termin_eintragen" formmethod="POST">Abschicken</button>
+    </form>
+</div>
+{% endblock %}

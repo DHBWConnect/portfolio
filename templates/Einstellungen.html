@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container centring">
+    <div class="row">
+        <a href="/ProfilBearbeiten" class="btn btn-secondary" role="button">Account Bearbeiten</a>
+    </div>
+</div>
+<br>
+<form action="/AccountLoeschen" METHOD="POST">
+    <div class="container">
+        <div class="row">
+            <button type="submit" class="btn btn-secondary" role="button">Account Löschen</button>
+        </div>
+    </div>
+</form>
+<br>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+{% endblock %}

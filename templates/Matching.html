@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container d-flex flex-column justify-content-center align-items-center centringMatch">
+    <form class="form-signin">
+        <div class="form-row">
+            <div class="form-label-group">
+                <label for="readUsername">Benutzername</label>
+                <input type="text" name="usernameMatch" id="readUsername" class="form-control" placeholder="{{ nutzer }}" readonly>
+            </div>
+            <div class="form-label-group">
+                <label for="readInterests">Interesse</label>
+                <input type="text" id="readInterests" class="form-control" placeholder="{{ interesse }}" readonly>
+            </div>
+            <div class="form-label-group">
+                <label for="readAge">Alter</label>
+                <input type="text" id="readAge" class="form-control" placeholder="{{ alter }}" readonly>
+            </div>
+            <div class="form-label-group">
+                <label for="readDHBW">DHBW</label>
+                <input type="text" id="readDHBW" class="form-control" placeholder="{{ dhbw }}" readonly>
+            </div>
+            <div class="form-label-group">
+                <label for="readSgang">Studiengang</label>
+                <input type="text" id="readSgang" class="form-control" placeholder="{{ studiengang }}" readonly>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+
+<section class="mb-4 text-center">
+    <a class="btn btn-primary btn-floating m-1 greenCheck" role="button" href="/like"><i class="fas fa-check-square fa-4x"></i></a>
+    <a class="btn btn-primary btn-floating m-1 redCross" role="button" href="/dislike"><i class="fas fa-times-circle fa-4x"></i></a>
+</section>
+
+{% endblock %}
