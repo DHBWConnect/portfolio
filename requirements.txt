@@ -38,7 +38,6 @@ pipwin==0.5.1
 placebo==0.10.0
 psycopg2==2.9.1
 pyasn1==0.4.8
-PyAudio @ file:///C:/Users/mika-/pipwin/PyAudio-0.2.11-cp38-cp38-win32.whl
 PyAutoGUI==0.9.53
 pycparser==2.20
 PyGetWindow==0.0.9
