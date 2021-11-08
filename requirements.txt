@@ -39,7 +39,6 @@ pyttsx3
 pytweening
 pytz-deprecation-shim
 pywhatkit
-pywin32
 requests
 six
 soupsieve
