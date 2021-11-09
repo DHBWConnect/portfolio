@@ -21,10 +21,10 @@ app = Flask(__name__)
 app.secret_key = '#*ÜÖÄ---:,,."§!)?KLON;;;;...;234kayak8888walkGVSSBRAA--....yy.aö09348u)=!(§$"(/)????§($&'
 
 con = psycopg2.connect(
-    host='ec2-18-215-44-132.compute-1.amazonaws.com',
-    dbname='d7bvp4rieadllg',
-    user='lxyyargbdtncwo',
-    password='74b758cfb2922f81e8b2496d1e2364537955832863a6b9aa1fe4c1aa505a605c')
+    host='ec2-3-248-103-75.eu-west-1.compute.amazonaws.com',
+    dbname='dccg1q7f25lefn',
+    user='jsopdlybnrgqys',
+    password='b0d7a5b2b9e080b3fa709b19596e51ed645857aba9c83f8ac1a459289f6ab9f3')
 
 
 # Standardroutinen
@@ -205,42 +205,32 @@ def registrieren():
 
 # Match User/Gruppe
 # _____________________________________________________________________________________________________________________
-@app.route('/like')
+"""@app.route('/like')
 def like():
     cur = con.cursor()
     try:
         aktiv = session['user']
-        cur.execute(
-            "SELECT id, username, alter, i.name, d.name, s.name from nutzer n, interesse i, dhbw d, studiengang s where n.interesse = i.id AND n.dhbw_id = d.id "
-            "AND n.sgang_id = s.id AND n.id <> %(id)s ORDER BY RANDOM()", {"id": aktiv})
+        cur.execute("SELECT n.id, n.username, n.alter, i.name, d.name, s.name from nutzer n, interesse i,dhbw d, studiengang s WHERE n.interesse = i.id AND n.dhbw_id = d.id AND n.sgang_id = s.id "
+                    "AND n.id <> %(id)s ORDER BY RANDOM()", {"id": aktiv})
         ergebnis = cur.fetchone()
-        nutzer, alter, interesse, dhbw, studiengang = ergebnis[0], ergebnis[1], ergebnis[2], ergebnis[3], ergebnis[4]
-        cur.execute("SELECT u2_id from liked WHERE u1_id = %(u_partner)s", {'u_partner': id})
+        id_like, nutzer, alter, interesse, dhbw, studiengang = ergebnis[0], ergebnis[1], ergebnis[2], ergebnis[3], ergebnis[4], ergebnis[5]
+        
+        cur.execute("SELECT u2_id from liked WHERE u1_id = %(u_partner)s", {'u_partner': id_like})
         u2 = cur.fetchall()
-        aktiv = session['user']
         for (x) in u2:
             if x != aktiv:
                 print("Match")
-                cur.execute("INSERT INTO matched (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': id})
+                cur.execute("INSERT INTO matched (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': id_like})
                 con.commit()
-                return render_template('Matching.html', nutzer=nutzer, alter=alter)
+                return render_template('Matching.html', nutzer=nutzer, alter=alter, interesse=interesse, dhbw=dhbw, studiengang=studiengang)
             break
         else:
             print("Like")
-            cur.execute("INSERT INTO liked (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': id})
+            cur.execute("INSERT INTO liked (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': id_like})
             con.commit()
-            return render_template('Matching.html', nutzer=nutzer, alter=alter)
+            return render_template('Matching.html', nutzer=nutzer, alter=alter, interesse=interesse, dhbw=dhbw, studiengang=studiengang)
     finally:
-        cur.close()
-
-
-@app.route('/dislike')
-def dislike():
-    cur = con.cursor()
-    try:
-        return redirect('/show_profile')
-    finally:
-        cur.close()
+        cur.close()"""
 
 
 @app.route('/show_profile', methods=['GET'])
@@ -253,6 +243,8 @@ def show_profile():
             "AND n.sgang_id = s.id AND n.id <> %(id)s ORDER BY RANDOM()", {"id": aktiv})
         ergebnis = cur.fetchone()
         nutzer, alter, interesse, dhbw, studiengang = ergebnis[0], ergebnis[1], ergebnis[2], ergebnis[3], ergebnis[4]
+        nutzer_like = ergebnis[0]
+        cur.execute("INSERT INTO zwischenspeicher (nutzer_like) VALUES(%(nutzer)s)", {'nutzer': nutzer_like})
         cur.execute("SELECT count(*) FROM liked where u1_id = %(aktiv)s AND u2_id = (SELECT id FROM nutzer WHERE username = %(nutzer)s)", {'aktiv': aktiv, 'nutzer': nutzer})
         ergebnis = cur.fetchone()[0]
         if ergebnis == 0:
@@ -263,6 +255,54 @@ def show_profile():
                 "nutzer WHERE username = %(nutzer2)s) ORDER BY RANDOM()",
                 {"id": aktiv, 'nutzer2': nutzer})
             return render_template('Matching.html', nutzer='Kein neuer Nutzer', alter='', interesse='', dhbw='', studiengang='')
+    finally:
+        cur.close()
+
+
+@app.route('/like')
+def like():
+    cur = con.cursor()
+    try:
+        cur.execute("SELECT nutzer_like FROM zwischenspeicher ")
+        nutzer_like = cur.fetchall()[-1]
+        cur.execute("SELECT id FROM nutzer WHERE username = %(nutzer_like)s", {'nutzer_like': nutzer_like})
+        partner = cur.fetchone()[0]
+        aktiv = session['user']
+        cur.execute("SELECT u2_id from liked WHERE u1_id = %(u_partner)s", {'u_partner': partner})
+        u2 = cur.fetchall()
+        for (x) in u2:
+            if x != aktiv:
+                print("Match")
+                cur.execute("INSERT INTO matched (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': partner})
+                cur.execute("INSERT INTO liked (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': partner})
+                con.commit()
+                return redirect('/delete_zwischenspeicher')
+            break
+        else:
+            print("Like")
+            cur.execute("INSERT INTO liked (u1_id, u2_id) VALUES (%(u_aktiv)s, %(u_partner)s)", {'u_aktiv': aktiv, 'u_partner': partner})
+            con.commit()
+            return redirect('/delete_zwischenspeicher')
+        return redirect('/delete_zwischenspeicher')
+    finally:
+        cur.close()
+
+
+@app.route('/delete_zwischenspeicher')
+def delete():
+    cur = con.cursor()
+    try:
+        cur.execute("DELETE FROM zwischenspeicher")
+        return redirect('/show_profile')
+    finally:
+        cur.close()
+
+
+@app.route('/dislike')
+def dislike():
+    cur = con.cursor()
+    try:
+        return redirect('/show_profile')
     finally:
         cur.close()
 
